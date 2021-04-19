@@ -8,6 +8,7 @@ import {
   withRouter,
 } from "react-router-dom";
 import "./App.css";
+import AddSaucer from "./components/add-saucer/add-saucer.component";
 import Footer from "./components/footer/footer.component";
 import InsideNavbar from "./components/inside-navbar/inside-navbar.component";
 import Navbar from "./components/navbar/navbar.component";
@@ -40,11 +41,13 @@ export default function App() {
 
         {(location.pathname === "/home" ||
           location.pathname === "/" ||
-          location.pathname === "/saucers") && <InsideNavbar />}
+          location.pathname === "/saucers" ||
+          location.pathname === "/addSaucers") && <InsideNavbar />}
         <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/saucers" component={Saucers} />
+        <Route exact path="/addSaucers" component={AddSaucer} />
         {(location.pathname === "/" ||
           location.pathname === "/login" ||
           location.pathname === "/home") && <Footer />}
