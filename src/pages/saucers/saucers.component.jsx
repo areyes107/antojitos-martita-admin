@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   addButton: {
     color: "white",
-    backgroundColor: "#67bfb1",
+    backgroundColor: "green",
     marginBottom: "1rem",
   },
   images: {
