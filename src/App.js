@@ -12,6 +12,7 @@ import AddSaucer from "./components/add-saucer/add-saucer.component";
 import Footer from "./components/footer/footer.component";
 import InsideNavbar from "./components/inside-navbar/inside-navbar.component";
 import Navbar from "./components/navbar/navbar.component";
+import UpdateSaucer from "./components/update-saucer/update-saucer.component";
 import firebase from "./firebase/firebase.utils";
 import Home from "./pages/home/home.component";
 import Login from "./pages/login/login.component";
@@ -42,12 +43,14 @@ export default function App() {
         {(location.pathname === "/home" ||
           location.pathname === "/" ||
           location.pathname === "/saucers" ||
-          location.pathname === "/addSaucers") && <InsideNavbar />}
+          location.pathname === "/addSaucers" ||
+          location.pathname === "/updateSaucer") && <InsideNavbar />}
         <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/saucers" component={Saucers} />
         <Route exact path="/addSaucers" component={AddSaucer} />
+        <Route exact path="/updateSaucer" component={UpdateSaucer} />
         {(location.pathname === "/" ||
           location.pathname === "/login" ||
           location.pathname === "/home") && <Footer />}

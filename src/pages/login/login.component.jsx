@@ -32,6 +32,9 @@ const useStyles = (theme) => ({
   submit: {
     margin: theme.spacing(2, 0, 1),
     backgroundColor: "#67bfb1",
+    "&:hover": {
+      backgroundColor: "white",
+    },
   },
 });
 
@@ -106,7 +109,6 @@ class Login extends React.Component {
               <Button
                 type="submit"
                 variant="contained"
-                color="primary"
                 fullWidth
                 autoFocus
                 className={classes.submit}

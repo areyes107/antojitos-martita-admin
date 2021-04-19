@@ -130,6 +130,10 @@ export default function Saucers() {
     history.push("/addSaucers");
   };
 
+  const getSaucerId = (id) => {
+    history.push("/updateSaucer", { id: id });
+  };
+
   return (
     <div className={classes.root}>
       <h1 style={{ textAlign: "center" }}> Saucers</h1>
@@ -192,6 +196,7 @@ export default function Saucers() {
                         <Button
                           className={classes.editButton}
                           variant="contained"
+                          onClick={() => getSaucerId(item.id)}
                         >
                           Edit
                         </Button>
