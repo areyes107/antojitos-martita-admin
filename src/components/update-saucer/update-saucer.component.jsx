@@ -79,6 +79,7 @@ function UpdateSaucer() {
   const handleSubmit = (event) => {
     event.preventDefault();
     updateData(location.state.id);
+    history.push("/saucers");
   };
 
   const handleChange = (event) => {
