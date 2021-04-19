@@ -35,11 +35,11 @@ export default function App() {
   const MainApp = withRouter(({ location }) => {
     return (
       <div>
-        {(location.pathname === "/" || location.pathname === "/login") && (
-          <Navbar />
+        {location.pathname === "/login" && <Navbar />}
+        {(location.pathname === "/home" || location.pathname === "/") && (
+          <InsideNavbar />
         )}
-        {location.pathname === "/home" && <InsideNavbar />}
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/login" component={Login} />
         {(location.pathname === "/" ||

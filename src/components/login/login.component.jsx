@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { auth } from "../../firebase/firebase.utils";
+import firebase, { auth } from "../../firebase/firebase.utils";
 import "./login.styles.css";
 
 const useStyles = (theme) => ({
@@ -51,11 +51,14 @@ class Login extends React.Component {
     const { email, password } = this.state;
 
     try {
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
       await auth.signInWithEmailAndPassword(email, password);
+
       this.setState({ email: "", password: "" });
       this.props.history.push("/home");
     } catch (error) {
       console.error(error);
+      alert("Try login in again, your credentials aren't right");
     }
   };
 
