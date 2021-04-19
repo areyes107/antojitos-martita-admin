@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline } from "@material-ui/core";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  withRouter,
+} from "react-router-dom";
+import "./App.css";
+import Footer from "./components/footer/footer.component";
+import Home from "./components/home/home.component";
+import InsideNavbar from "./components/inside-navbar/inside-navbar.component";
+import Login from "./components/login/login.component";
+import Navbar from "./components/navbar/navbar.component";
+import firebase from "./firebase/firebase.utils";
 
-function App() {
+const theme = createMuiTheme();
+
+export default function App() {
+  const [firebaseInitialized, setFirebaseInitialized] = useState(false);
+
+  const isInitialized = () => {
+    return new Promise((resolve) => {
+      firebase.auth().onAuthStateChanged(resolve);
+    });
+  };
+
+  useEffect(() => {
+    isInitialized().then((val) => {
+      setFirebaseInitialized(val);
+    });
+  });
+
+  const MainApp = withRouter(({ location }) => {
+    return (
+      <div>
+        {(location.pathname === "/" || location.pathname === "/login") && (
+          <Navbar />
+        )}
+        {location.pathname === "/home" && <InsideNavbar />}
+        <Route exact path="/" component={Login} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/login" component={Login} />
+        {(location.pathname === "/" ||
+          location.pathname === "/login" ||
+          location.pathname === "/home") && <Footer />}
+      </div>
+    );
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Switch>
+          <MainApp />
+        </Switch>
+      </Router>
+    </MuiThemeProvider>
   );
 }
-
-export default App;
