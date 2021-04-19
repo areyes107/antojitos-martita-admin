@@ -82,14 +82,19 @@ const InsideNavbar = () => {
     history.push("/home");
   };
 
-  const handleCloseCustomers = () => {
+  const handleCloseSaucers = () => {
     setAnchorEl(null);
-    history.push("/customers");
+    history.push("/saucers");
   };
 
-  const handleCloseProducts = () => {
+  const handleCloseCombos = () => {
     setAnchorEl(null);
-    history.push("/products");
+    history.push("/combos");
+  };
+
+  const handleCloseFamiliarCombos = () => {
+    setAnchorEl(null);
+    history.push("/familiarCombos");
   };
 
   const logout = () => {
@@ -142,8 +147,11 @@ const InsideNavbar = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleCloseCustomers}>Customers</MenuItem>
-              <MenuItem onClick={handleCloseProducts}>Products</MenuItem>
+              <MenuItem onClick={handleCloseSaucers}>Saucers</MenuItem>
+              <MenuItem onClick={handleCloseCombos}>Combos</MenuItem>
+              <MenuItem onClick={handleCloseFamiliarCombos}>
+                Familiar Combos
+              </MenuItem>
             </Menu>
           </div>
 

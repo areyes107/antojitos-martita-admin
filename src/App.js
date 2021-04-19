@@ -9,11 +9,12 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/footer/footer.component";
-import Home from "./components/home/home.component";
 import InsideNavbar from "./components/inside-navbar/inside-navbar.component";
-import Login from "./components/login/login.component";
 import Navbar from "./components/navbar/navbar.component";
 import firebase from "./firebase/firebase.utils";
+import Home from "./pages/home/home.component";
+import Login from "./pages/login/login.component";
+import Saucers from "./pages/saucers/saucers.component";
 
 const theme = createMuiTheme();
 
@@ -36,12 +37,14 @@ export default function App() {
     return (
       <div>
         {location.pathname === "/login" && <Navbar />}
-        {(location.pathname === "/home" || location.pathname === "/") && (
-          <InsideNavbar />
-        )}
+
+        {(location.pathname === "/home" ||
+          location.pathname === "/" ||
+          location.pathname === "/saucers") && <InsideNavbar />}
         <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/saucers" component={Saucers} />
         {(location.pathname === "/" ||
           location.pathname === "/login" ||
           location.pathname === "/home") && <Footer />}
