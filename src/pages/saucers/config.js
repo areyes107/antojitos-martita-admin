@@ -9,6 +9,7 @@ const columns = [
     minWidth: 140,
     maxWidth: 200,
   },
+  { id: "edit_delete", minWidth: 210, maxWidth: 200 },
 ];
 
 export default columns;

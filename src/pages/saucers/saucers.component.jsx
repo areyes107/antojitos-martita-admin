@@ -1,3 +1,4 @@
+import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: "absolute",
   },
   formControl: {
-    minWidth: 200,
+    minWidth: 180,
   },
   searchAndOthers: {
     marginTop: "70px",
@@ -28,32 +29,30 @@ const useStyles = makeStyles((theme) => ({
   rootTable: {
     width: "100%",
     marginLeft: "20px",
-    maxWidth: "1850px",
+    maxWidth: "97vw",
   },
   tableContainer: {
     maxHeight: 540,
-    maxWidth: "1850px",
+    maxWidth: "97vw",
   },
   addButton: {
     color: "white",
-    backgroundColor: "#00A891",
-    position: "relative",
-  },
-  editButton: {
-    color: "white",
-    backgroundColor: "#FF9900",
-    position: "relative",
-  },
-  deleteButton: {
-    color: "white",
-    backgroundColor: "red",
-    position: "relative",
-    marginLeft: "5px",
+    backgroundColor: "#67bfb1",
+    marginBottom: "1rem",
   },
   images: {
     width: "100px",
     height: "100px",
     borderRadius: "5px",
+  },
+  deleteButton: {
+    backgroundColor: "red",
+    color: "white",
+  },
+  editButton: {
+    backgroundColor: "#FF9900",
+    color: "white",
+    marginRight: "0.5rem",
   },
 }));
 
@@ -127,10 +126,22 @@ export default function Saucers() {
     setPage(0);
   };
 
+  const goToAddSaucers = () => {
+    history.push("/addSaucers");
+  };
+
   return (
     <div className={classes.root}>
       <h1 style={{ textAlign: "center" }}> Saucers</h1>
       <Paper className={classes.rootTable}>
+        <Button
+          className={classes.addButton}
+          onClick={goToAddSaucers}
+          variant="contained"
+        >
+          {" "}
+          Add New Saucer
+        </Button>
         <TableContainer className={classes.tableContainer}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
@@ -176,6 +187,20 @@ export default function Saucers() {
                           alt=""
                           className={classes.images}
                         />
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <Button
+                          className={classes.editButton}
+                          variant="contained"
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          className={classes.deleteButton}
+                          variant="contained"
+                        >
+                          Delete
+                        </Button>
                       </StyledTableCell>
                     </StyledTableRow>
                   </TableBody>
