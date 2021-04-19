@@ -142,7 +142,7 @@ export default function Saucers() {
                     style={{
                       minWidth: column.minWidth,
                       maxWidth: column.maxWidth,
-                      backgroundColor: "#152249",
+                      backgroundColor: "#67bfb1",
                       color: "white",
                     }}
                   >
