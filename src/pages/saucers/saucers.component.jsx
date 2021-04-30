@@ -107,6 +107,10 @@ const CountDocuments = () => {
   return documents;
 };
 
+const deleteSaucer = async (id) => {
+  firebase.firestore().collection("saucers").doc(id).delete();
+};
+
 export default function Saucers() {
   const history = useHistory();
   const classes = useStyles();
@@ -202,6 +206,7 @@ export default function Saucers() {
                         </Button>
                         <Button
                           className={classes.deleteButton}
+                          onClick={() => deleteSaucer(item.id)}
                           variant="contained"
                         >
                           Delete

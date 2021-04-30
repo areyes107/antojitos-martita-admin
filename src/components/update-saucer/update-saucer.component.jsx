@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import firebase from "../../firebase/firebase.utils";
+import ImageModalSaucer from "../image-modal-saucer/image-modal-saucer.component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,10 @@ function UpdateSaucer() {
   const history = useHistory();
   const classes = useStyles();
 
+  const [images, setImages] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [photoUrl, setPhotoUrl] = useState("");
+
   const id = location.state.id;
   const [data, setData] = useState("");
 
@@ -70,6 +75,7 @@ function UpdateSaucer() {
         .doc(id)
         .update({
           ...data,
+          photoUrl,
         });
     } catch (error) {
       console.log(error);
@@ -91,6 +97,36 @@ function UpdateSaucer() {
   useEffect(() => {
     getData(id).then((user) => setData(user));
   }, [id]);
+
+  const handleClose = (_e) => {
+    const _isModalOpen = isModalOpen;
+    setIsModalOpen(!_isModalOpen);
+  };
+
+  const formulateUrl = async (item) => {
+    const location = item["_delegate"]["_location"];
+    const ref = firebase.storage().ref(location["path_"]);
+    let url = await ref.getDownloadURL();
+    return url;
+  };
+
+  useEffect(() => {
+    async function CreateUrl() {
+      const rawData = await firebase.storage().ref("saucers").listAll();
+
+      const urls = await Promise.all(
+        rawData.items.map((item) => formulateUrl(item))
+      );
+
+      setImages(urls);
+    }
+    CreateUrl();
+  }, []);
+
+  const setLogoUrl = (url) => {
+    console.log(url);
+    setPhotoUrl(url);
+  };
 
   return (
     <div className={classes.root}>
@@ -178,9 +214,33 @@ function UpdateSaucer() {
             <div>
               <InputLabel> Image</InputLabel>
               <div className={classes.imageContainer}>
-                <img src={data.photoUrl} alt="" className={classes.image} />
+                <img
+                  src={photoUrl ? photoUrl : data.photoUrl}
+                  alt=""
+                  className={classes.image}
+                />
               </div>
             </div>
+
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.selectButton}
+              onClick={handleClose}
+              onChange={handleChange}
+            >
+              Update Logo
+            </Button>
+
+            <ImageModalSaucer
+              urls={images}
+              handleClose={handleClose}
+              open={isModalOpen}
+              setUrl={setLogoUrl}
+            />
+            <br />
+            <br />
+
             <Button
               variant="contained"
               type="submit"
