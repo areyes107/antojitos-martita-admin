@@ -8,11 +8,11 @@ import {
   withRouter,
 } from "react-router-dom";
 import "./App.css";
-import AddSaucer from "./components/add-saucer/add-saucer.component";
 import Footer from "./components/footer/footer.component";
 import InsideNavbar from "./components/inside-navbar/inside-navbar.component";
 import Navbar from "./components/navbar/navbar.component";
-import UpdateSaucer from "./components/update-saucer/update-saucer.component";
+import AddSaucer from "./components/saucers/add-saucer/add-saucer.component";
+import UpdateSaucer from "./components/saucers/update-saucer/update-saucer.component";
 import firebase from "./firebase/firebase.utils";
 import Home from "./pages/home/home.component";
 import Login from "./pages/login/login.component";

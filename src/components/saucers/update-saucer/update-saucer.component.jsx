@@ -2,7 +2,7 @@ import { Button, InputLabel, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import firebase from "../../firebase/firebase.utils";
+import firebase from "../../../firebase/firebase.utils";
 import ImageModalSaucer from "../image-modal-saucer/image-modal-saucer.component";
 
 const useStyles = makeStyles((theme) => ({

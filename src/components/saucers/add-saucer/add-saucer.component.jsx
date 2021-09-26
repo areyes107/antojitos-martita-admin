@@ -7,7 +7,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import React, { useEffect, useState } from "react";
 import CustomUploadButton from "react-firebase-file-uploader/lib/CustomUploadButton";
 import { useHistory } from "react-router-dom";
-import firebase from "../../firebase/firebase.utils";
+import firebase from "../../../firebase/firebase.utils";
 import ImageModalSaucer from "../image-modal-saucer/image-modal-saucer.component";
 
 const useStyles = makeStyles((theme) => ({
